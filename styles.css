@@ -1673,3 +1673,1093 @@ ul { list-style: none; margin: 0; padding: 0; }
     transform: none !important;
   }
 }
+/* Ajustes para pantallas de celulares */
+@media (max-width: 768px) {
+  /* Cambiar contenedores principales de filas a columnas */
+  .hero-container,
+  .services-slider,
+  footer {
+    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  /* Ajustar tamaños de letra y padding */
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  /* Asegurar que las imágenes no se salgan de la pantalla */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Reorganizar el menú o footer en vertical */
+  footer .footer-col {
+    align-items: center !important;
+    margin-bottom: 20px;
+  }
+}
+
+/* --- REFORZAMIENTO MÓVIL TOTAL --- */
+@media (max-width: 768px) {
+  /* Forzar que CUALQUIER imagen se adapte al celular y no sea gigante */
+  img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  /* Reducir el contenedor principal de cada sección para que no desborde */
+  section, .hero, .proyectos, .testimonios, .footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Asegurar que las tarjetas o marcos de fotos no se salgan */
+  .hero-container, .proyecto-card, .testimonial-card, div {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* --- FORZAR TAMAÑO PEQUEÑO EN MÓVILES PARA TODO EL SITIO --- */
+@media (max-width: 768px) {
+  /* 1. Reducir la sección de la foto de bienvenida (Hero) */
+  .hero img, 
+  .hero-container img,
+  header img {
+    max-width: 85% !important;
+    width: 85% !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  /* 2. Reducir las imágenes de Proyectos para que quepan bien */
+  .proyectos img, 
+  .proyecto-card img,
+  section:nth-of-type(3) img {
+    max-width: 85% !important;
+    width: 85% !important;
+    height: auto !important;
+    border-radius: 12px;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  /* 3. Reducir las imágenes de Testimonios y su marco */
+  .testimonios img, 
+  .testimonial-card img,
+  section:nth-of-type(4) img {
+    max-width: 85% !important;
+    width: 85% !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  /* 4. Asegurar que las cajas de texto y contenedores no se desborden */
+  div, section {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* --- VISTA DE A 2 COLUMNAS PARA MÓVILES EN PROYECTOS Y TESTIMONIOS --- */
+@media (max-width: 768px) {
+  
+  /* 1. Contenedor de Proyectos en 2 columnas */
+  .proyectos-grid, 
+  .projects-container, 
+  #proyectos .grid,
+  section:has(#proyectos) .grid-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* Muestra 2 tarjetas por fila */
+    gap: 12px !important;                             /* Espacio pequeño entre tarjetas */
+    padding: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Contenedor de Testimonios en 2 columnas */
+  .testimonios-grid, 
+  .testimonials-container, 
+  #testimonios .grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    padding: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 3. Reducir las imágenes para que encajen perfectas de a dos */
+  .proyecto-card img, 
+  .testimonial-card img,
+  .proyectos-grid img,
+  .testimonios-grid img,
+  #proyectos img,
+  #testimonios img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 12px !important;
+    object-fit: cover !important;
+    margin: 0 !important;
+  }
+
+  /* 4. Ajuste de las tarjetas contenedoras */
+  .proyecto-card, 
+  .testimonial-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+/* --- CORRECCIÓN DEFINITIVA PARA MÓVILES (2 COLUMNAS Y DISEÑO LIMPIO) --- */
+@media (max-width: 768px) {
+
+  /* 1. Evitar desbordamientos generales en celular */
+  body, html {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+
+  /* 2. PROYECTOS: Forzar 2 columnas ordenadas */
+  .portfolio-collage {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    padding: 5px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .portfolio-item, 
+  .portfolio-dual-horizontal {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0 !important;
+  }
+
+  .portfolio-item img, 
+  .portfolio-item video {
+    width: 100% !important;
+    height: 110px !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+  }
+
+  /* 3. TESTIMONIOS: Forzar 2 columnas en todas sus filas */
+  .testimonios-row-3, 
+  .testimonios-row-2, 
+  .testimonios-grid-story {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    padding: 5px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .testimonio-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto 10px auto !important;
+    transform: none !important; /* Elimina inclinaciones que descuadran */
+  }
+
+  .testimonio-img-wrapper img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 140px !important;
+    object-fit: contain !important;
+    border-radius: 8px !important;
+  }
+
+  /* Reducir etiquetas de nombre debajo de testimonios */
+  .testimonio-footer span {
+    font-size: 0.7rem !important;
+  }
+
+  /* 4. Ajustar separación de las ondas para que no tapen los textos */
+  .wave {
+    height: 35px !important;
+  }
+  
+  section {
+    padding: 30px 0 !important;
+  }
+}
+/* --- AJUSTES RÁPIDOS EXCLUSIVOS PARA CELULAR --- */
+@media (max-width: 768px) {
+  /* 1. Proyectos de a 2 columnas */
+  .portfolio-collage {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    padding: 10px !important;
+  }
+  .portfolio-item, .portfolio-dual-horizontal {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  .portfolio-item img, .portfolio-item video {
+    height: 120px !important;
+    object-fit: cover !important;
+  }
+
+  /* 2. Testimonios de a 2 columnas */
+  .testimonios-row-3, 
+  .testimonios-row-2, 
+  .testimonios-grid-story {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    padding: 10px !important;
+  }
+  .testimonio-card {
+    width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+  .testimonio-img-wrapper img {
+    max-height: 150px !important;
+    object-fit: contain !important;
+  }
+}
+/* =============================================================
+   AJUSTE EXCLUSIVO CELULARES: 2 COLUMNAS EN PROYECTOS Y TESTIMONIOS
+   ============================================================= */
+@media (max-width: 768px) {
+  /* 1. Proyectos / Portafolio en 2 columnas */
+  .portfolio-collage {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  
+  .portfolio-item, 
+  .portfolio-dual-horizontal {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    aspect-ratio: auto !important;
+  }
+
+  .portfolio-item img, 
+  .portfolio-item video {
+    height: 130px !important;
+    object-fit: cover !important;
+  }
+
+  /* 2. Testimonios en 2 columnas */
+  .testimonios-row-3, 
+  .testimonios-row-2, 
+  .testimonios-grid-story {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .testimonio-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+    padding: 10px !important;
+  }
+
+  .testimonio-img-wrapper img {
+    height: auto !important;
+    max-height: 150px !important;
+    object-fit: contain !important;
+  }
+}
+/* =============================================================
+   SOLUCIÓN DEFINITIVA Y DIRECTA PARA TESTIMONIOS EN MÓVIL
+   ============================================================= */
+@media (max-width: 768px) {
+  /* Forzar filas y cuadrícula de 2 columnas */
+  .testimonios-row-3, 
+  .testimonios-row-2, 
+  .testimonios-grid-story {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  /* Anular la tarjeta grande y la rotación de PC */
+  .testimonial-card,
+  .testimonio-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 10px !important;
+    transform: none !important;
+    box-shadow: 3px 3px 0 var(--purple) !important;
+    border-radius: 12px !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Forzar que las imágenes se adapten sin dejar espacios abajo */
+  .testimonial-card img,
+  .testimonio-card img,
+  .testimonio-img-wrapper img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 180px !important;
+    object-fit: contain !important;
+  }
+
+  /* Alinear el texto o nombre del testimonio al centro y sin huecos */
+  .testimonial-name,
+  .testimonio-footer {
+    margin-top: 8px !important;
+    font-size: 0.8rem !important;
+    text-align: center !important;
+  }
+}
+/* =============================================================
+   CORRECCIÓN FINAL DE TESTIMONIOS: QUITANDO BORDES, ESPACIOS Y ARREGLANDO PROPORCIONES
+   ============================================================= */
+@media (max-width: 768px) {
+  /* Forzar cuadrícula limpia de 2 columnas */
+  .testimonios-row-3, 
+  .testimonios-row-2, 
+  .testimonios-grid-story {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  /* Quitar las cajas o bordes morados y sombras extrañas de las tarjetas */
+  .testimonial-card,
+  .testimonio-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 6px !important;
+    background: transparent !important; /* Elimina el fondo de tarjeta si causa el espacio */
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Ajustar la proporción correcta de las imágenes de historia (verticales) */
+  .testimonial-card img,
+  .testimonio-card img,
+  .testimonio-img-wrapper img {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 9 / 16 !important; /* Mantiene la proporción exacta de historia de celular */
+    object-fit: cover !important;
+    border-radius: 14px !important;
+    box-shadow: 4px 4px 0 var(--purple) !important;
+  }
+
+  /* Pegar el nombre de la marca justo debajo sin dejar espacios blancos */
+  .testimonial-name,
+  .testimonio-footer {
+    margin-top: 8px !important;
+    margin-bottom: 0 !important;
+    font-size: 0.75rem !important;
+    text-align: center !important;
+  }
+}
+/* =============================================================
+   CORRECCIÓN DEFINITIVA DE ALTURA EN TESTIMONIOS (MÓVIL)
+   ============================================================= */
+@media (max-width: 768px) {
+  /* Forzar 2 columnas en las filas de testimonios */
+  .testimonios-row-3, 
+  .testimonios-row-2, 
+  .testimonios-grid-story {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  /* Forzar que la tarjeta contenedora se adapte al tamaño exacto de la imagen sin dejar espacio abajo */
+  .testimonial-card,
+  .testimonio-card {
+    height: auto !important;
+    min-height: 0 !important;
+    padding-bottom: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+  }
+
+  /* Hacer que la imagen interna o el contenedor de la imagen mande en la altura */
+  .testimonio-img-wrapper,
+  .testimonial-card img,
+  .testimonio-card img,
+  .testimonio-img-wrapper img {
+    height: auto !important;
+    max-height: 260px !important;
+    object-fit: contain !important;
+    width: 100% !important;
+  }
+}
+/* =============================================================
+   AJUSTE FINAL PERFECTO EN MÓVIL: POSTS + HISTORIAS
+   ============================================================= */
+@media (max-width: 768px) {
+  /* 1. Estructura general de 2 columnas */
+  .testimonios-row-3, 
+  .testimonios-row-2, 
+  .testimonios-grid-story {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  /* 2. Limpieza de tarjetas para evitar espacios blancos abajo */
+  .testimonial-card,
+  .testimonio-card {
+    height: auto !important;
+    min-height: unset !important;
+    padding: 6px !important;
+    margin-bottom: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+
+  /* 3. POSTS (Filas 2 y 3): Formato cuadrado / horizontal completo */
+  .testimonios-row-2 img,
+  .testimonios-row-3 img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 190px !important;
+    object-fit: contain !important;
+  }
+
+  /* 4. HISTORIAS (.testimonios-grid-story): Formato vertical de celular completo */
+  .testimonios-grid-story img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 340px !important;
+    object-fit: contain !important;
+  }
+
+  /* 5. Nombres o botones ajustados justo debajo de la imagen */
+  .testimonial-name,
+  .testimonio-footer {
+    margin-top: 6px !important;
+    margin-bottom: 0 !important;
+    font-size: 0.75rem !important;
+    text-align: center !important;
+  }
+}
+/* =============================================================
+   CORRECCIÓN EXCLUSIVA PARA PROYECTOS Y TESTIMONIOS EN MÓVIL
+   ============================================================= */
+@media (max-width: 768px) {
+
+  /* --- 1. PROYECTOS / PORTAFOLIO --- */
+  .portfolio-collage,
+  .portfolio-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+  }
+
+  /* Quitar la altura fija o la proporción rígida para que no queden huecos blancos */
+  .portfolio-item {
+    aspect-ratio: auto !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: #000000 !important; /* Para que si hay video no se vea blanco detrás */
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+
+  /* Forzar que las imágenes y videos llenen la tarjeta limpiamente */
+  .portfolio-item img,
+  .portfolio-item video,
+  .portfolio-placeholder img,
+  .portfolio-placeholder video {
+    width: 100% !important;
+    height: 180px !important; /* Altura uniforme adecuada para móvil */
+    object-fit: cover !important; /* Llena toda la tarjeta sin bordes blancos */
+    display: block !important;
+  }
+
+  /* Para piezas horizontales específicas (como laptops o marcas horizontales) */
+  .portfolio-item.horizontal img,
+  .portfolio-item.horizontal video {
+    object-fit: contain !important;
+    background: var(--cream) !important;
+    height: 140px !important;
+  }
+
+  /* --- 2. TESTIMONIOS (MANTENER AJUSTE ANTERIOR) --- */
+  .testimonios-row-3, 
+  .testimonios-row-2, 
+  .testimonios-grid-story {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .testimonial-card,
+  .testimonio-card {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 6px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .testimonios-row-2 img,
+  .testimonios-row-3 img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 190px !important;
+    object-fit: contain !important;
+  }
+
+  .testimonios-grid-story img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 340px !important;
+    object-fit: contain !important;
+  }
+}
+/* =============================================================
+   CORRECCIÓN FINAL DE PROYECTOS EN MÓVIL (SOBRE BASE ANTERIOR)
+   ============================================================= */
+@media (max-width: 768px) {
+  /* 1. Forzar cuadrícula de 2 columnas limpia */
+  .portfolio-collage,
+  .portfolio-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  /* 2. Ajustar la tarjeta general de proyectos */
+  .portfolio-item {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: 4px 4px 0 var(--blue) !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* 3. Aislar contenedores multimedia */
+  .portfolio-media-box,
+  .portfolio-video-box {
+    background: transparent !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* 4. Estándar general (ideal para Intro, Kimi Friends, etc. con object-fit contain y fondo crema) */
+  .portfolio-item img,
+  .portfolio-item video,
+  .portfolio-placeholder img,
+  .portfolio-placeholder video,
+  .portfolio-media-box img,
+  .portfolio-media-box video {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 200px !important;
+    object-fit: contain !important;
+    display: block !important;
+    background: var(--cream) !important;
+  }
+
+  /* 5. Excepción para el video vertical de Calenda para que llene la tarjeta sin bordes a los lados */
+  .portfolio-item:nth-child(2) video,
+  .portfolio-item:nth-child(2) img,
+  .portfolio-item.calenda video,
+  .portfolio-item.calenda img {
+    object-fit: cover !important;
+    background: transparent !important;
+  }
+}
+/* =============================================================
+   PROYECTOS EN CELULAR — versión limpia (dejar AL FINAL)
+   ============================================================= */
+@media (max-width: 768px) {
+
+  #proyectos .portfolio-collage {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+    padding: 0 !important;
+    align-items: stretch !important;
+  }
+
+  /* Tarjetas formato post (4:5), la imagen llena toda la tarjeta */
+  #proyectos .portfolio-item {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 5 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    background: var(--cream) !important;
+    box-shadow: 4px 4px 0 var(--blue) !important;
+    transform: none !important;
+  }
+
+  #proyectos .portfolio-item img,
+  #proyectos .portfolio-item video {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    object-fit: cover !important;
+    background: transparent !important;
+    transform: none !important;
+  }
+
+  /* Columna doble: Kimi y DUO apiladas al lado del Intro, misma altura total */
+  #proyectos .portfolio-dual-horizontal {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+  }
+
+  #proyectos .portfolio-item.horizontal {
+    aspect-ratio: auto !important;
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+  }
+}
+/* =============================================================
+   TESTIMONIOS EN CELULAR — versión limpia (dejar AL FINAL)
+   ============================================================= */
+@media (max-width: 768px) {
+
+  #testimonios .testimonios-row-3,
+  #testimonios .testimonios-row-2,
+  #testimonios .testimonios-grid-story {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 18px 14px !important;
+    padding: 0 !important;
+    margin: 0 0 18px 0 !important;
+    width: 100% !important;
+  }
+
+  /* Calenda (3er post) centrada para que no quede el hueco */
+  #testimonios .testimonios-row-3 > .testimonio-card:nth-child(3) {
+    grid-column: 1 / -1 !important;
+    width: calc(50% - 7px) !important;
+    justify-self: center !important;
+  }
+
+  /* Tarjeta limpia, sin fondos ni sombras extra */
+  #testimonios .testimonio-card {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  /* El marco manda: proporción exacta y una sola sombra azul */
+  #testimonios .testimonio-img-wrapper {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    background: transparent !important;
+    box-shadow: 4px 4px 0 var(--blue) !important;
+  }
+  #testimonios .testimonio-img-wrapper.format-standard { aspect-ratio: 1080 / 1350 !important; }
+  #testimonios .testimonio-img-wrapper.format-story   { aspect-ratio: 1080 / 1920 !important; }
+
+  /* La imagen llena el marco completo, sin sombra propia */
+  #testimonios .testimonio-img-wrapper img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    margin: 0 !important;
+    object-fit: cover !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  #testimonios .testimonio-footer {
+    margin-top: 10px !important;
+  }
+}
+/* =============================================================
+   ONDAS — arreglo general (dejar AL FINAL)
+   ============================================================= */
+
+/* Ocultar las ondas que no coinciden con la sección de rayas siguiente */
+.nosotros > .wave,
+.por-que > .wave,
+.testimonios > .wave {
+  display: none !important;
+}
+
+/* Onda crema ARRIBA de las secciones con rayas */
+.servicios::before,
+.proyectos::before,
+.cta-final::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath fill='%23FBF9F4' d='M0,50 C240,0 480,90 720,60 C960,30 1200,80 1440,50 L1440,0 L0,0 Z'/%3E%3C/svg%3E") no-repeat;
+  background-size: 100% 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Celular: ondas completas y espacio suficiente para que no tapen nada */
+@media (max-width: 768px) {
+  .wave { height: auto !important; }
+  .wave svg { height: 40px !important; }
+
+  .servicios::before,
+  .proyectos::before,
+  .cta-final::before { height: 40px; }
+
+  .hero { padding: 40px 0 70px !important; }
+  section.section { padding: 60px 0 70px !important; }
+  .cta-final { padding: 80px 0 60px !important; }
+}
+/* =============================================================
+   FOOTER EN CELULAR (dejar AL FINAL)
+   ============================================================= */
+@media (max-width: 768px) {
+  .site-footer .footer-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 20px !important;
+  }
+
+  .site-footer .footer-logo {
+    width: auto !important;
+    height: 70px !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .site-footer .footer-nav {
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: 12px 22px !important;
+  }
+
+  .site-footer .footer-copy {
+    text-align: left !important;
+    font-size: 0.85rem !important;
+    padding: 0 28px !important;
+  }
+}
+/* =============================================================
+   INICIO (HEADER + HERO) EN CELULAR (dejar AL FINAL)
+   ============================================================= */
+@media (max-width: 768px) {
+
+  /* Header delgado con logo pequeño */
+  .site-header .header-inner {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+  .site-header .brand-logo {
+    width: auto !important;
+    height: 46px !important;
+    max-width: none !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  /* Hero: título y foto lado a lado, texto y botones debajo */
+  .hero .hero-inner {
+    display: grid !important;
+    grid-template-columns: 1.2fr 0.8fr !important;
+    grid-template-areas:
+      "title art"
+      "sub   sub"
+      "btns  btns" !important;
+    column-gap: 18px !important;
+    row-gap: 22px !important;
+    align-items: center !important;
+    padding-bottom: 20px !important;
+  }
+
+  /* Deja que el título, el texto y los botones se acomoden por separado */
+  .hero .hero-copy { display: contents !important; }
+
+  .hero .hero-copy h1 {
+    grid-area: title;
+    font-size: 1.6rem !important;
+    line-height: 1.12 !important;
+    margin: 0 !important;
+  }
+  
+  .hero .hero-copy h1 .highlight {
+    display: block !important;
+  }
+  .hero .hero-art {
+    grid-area: art;
+    order: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+  .hero .hero-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-width: 4px !important;
+    box-shadow: 5px 5px 0 rgba(14, 107, 120, .35) !important;
+  }
+  .hero .deco { width: 26px !important; height: 26px !important; }
+
+  .hero .hero-sub {
+    grid-area: sub;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+    .hero .hero-actions {
+    grid-area: btns;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-top: 0 !important;
+  }
+  .hero .hero-actions .btn {
+    display: inline-block !important;
+    width: auto !important;
+    padding: 10px 18px !important;
+    font-size: 14px !important;
+    text-align: center !important;
+  }
+  .hero .hero-actions .btn-primary {
+    box-shadow: 3px 3px 0 var(--blue) !important;
+  }
+  .hero .hero-actions .btn-ghost {
+    border-width: 2px !important;
+  }
+}
+/* =============================================================
+   TAMAÑO DE LETRA EN CELULAR (dejar AL FINAL)
+   ============================================================= */
+/* =============================================================
+   TAMAÑO DE LETRA EN CELULAR (dejar AL FINAL)
+   ============================================================= */
+@media (max-width: 768px) {
+
+  /* Texto base */
+  body {
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Párrafos de todas las secciones */
+  .hero .hero-sub,
+  .nosotros-copy p,
+  .servicios-info p,
+  .section-intro,
+  .diff-list p,
+  .section-subtitle {
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Frase destacada de Servicios */
+  .servicios-info .section-intro {
+    font-size: 15px !important;
+  }
+
+  /* Subtítulos de "¿Por qué Aqua?" */
+  .diff-list h3 {
+    font-size: 16px !important;
+  }
+
+  /* Chips de Quiénes somos */
+  .chip {
+    font-size: 13px !important;
+  }
+
+  /* Menú desplegable */
+  .main-nav a {
+    font-size: 14px
+    }
+  }
+/* =============================================================
+   AJUSTES FINALES EN CELULAR (dejar AL FINAL)
+   ============================================================= */
+/* =============================================================
+   CIERRE EN CELULAR (dejar AL FINAL DE TODO)
+   ============================================================= */
+@media (max-width: 768px) {
+  #contacto {
+    padding: 80px 0 56px !important;
+  }
+
+  #contacto h2 {
+    font-size: 20px !important;
+    line-height: 1.25 !important;
+    max-width: none !important;
+    margin: 0 auto 12px !important;
+  }
+
+  #contacto p {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    text-wrap: balance;
+  }
+
+  #contacto h2 + p {
+    margin: 0 auto 28px !important;
+  }
+
+  #contacto .btn {
+    font-size: 14px !important;
+    padding: 10px 20px !important;
+  }
+
+  #contacto .cta-alt {
+    font-size: 13px !important;
+    margin: 24px 0 0 !important;
+  }
+}
+/* =============================================================
+   QUIÉNES SOMOS Y SERVICIOS EN CELULAR (dejar AL FINAL)
+   ============================================================= */
+@media (max-width: 768px) {
+
+  /* Quiénes somos: chips pequeños, a la izquierda y en fila */
+  .nosotros .nosotros-inner {
+    gap: 20px !important;
+  }
+  .nosotros .nosotros-tag {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    height: auto !important;
+  }
+  .nosotros .chip {
+    display: inline-block !important;
+    font-size: 13px !important;
+    padding: 6px 14px !important;
+    box-shadow: 3px 3px 0 rgba(1, 172, 194, 0.612) !important;
+  }
+
+  /* Servicios: título y textos alineados a la izquierda */
+  .servicios .servicios-info {
+    text-align: left !important;
+  }
+  }
+  /* =============================================================
+   LETRA UN POCO MÁS PEQUEÑA EN CELULAR (dejar AL FINAL)
+   ============================================================= */
+@media (max-width: 768px) {
+
+  body { font-size: 13px !important; }
+
+  .hero .hero-sub,
+  .nosotros-copy p,
+  .servicios-info p,
+  .section-intro,
+  .diff-list p,
+  .section-subtitle,
+  #contacto p {
+    font-size: 13px !important;
+  }
+
+  .servicios-info .section-intro { font-size: 14px !important; }
+  .diff-list h3 { font-size: 15px !important; }
+  .chip, .nosotros .chip { font-size: 12px !important; }
+  .main-nav a { font-size: 13px !important; }
+  #contacto .cta-alt { font-size: 12px !important; }
+}
+/* =============================================================
+   HERO: TEXTO MÁS CORTO Y BOTONES MÁS PEQUEÑOS (dejar AL FINAL)
+   ============================================================= */
+@media (max-width: 768px) {
+
+  /* Párrafo alineado a la izquierda y más angosto */
+  .hero .hero-sub {
+    text-align: left !important;
+    max-width: 34ch !important;
+  }
+
+  /* Botones más pequeños, a la izquierda */
+  .hero .hero-actions {
+    justify-content: flex-start !important;
+    gap: 10px !important;
+  }
+  .hero .hero-actions .btn {
+    font-size: 12px !important;
+    padding: 8px 14px !important;
+  }
+  .hero .hero-actions .btn-primary {
+    box-shadow: 2px 2px 0 var(--blue) !important;
+  }
+}
