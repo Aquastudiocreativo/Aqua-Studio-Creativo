@@ -3,6 +3,8 @@
    ============================================================= */
 
 /* ---------- TOKENS ---------- */
+
+ /* ---------- TOKENS ---------- */
 :root {
   --aqua: #2FC1D1;
   --aqua-deep: #0E6B78;
@@ -12,18 +14,45 @@
   --pink: #F2A6C8;
   --yellow: #FFD65C;
   --ink: #123238;
-  --cream: #FFFDF8;
+  --cream: #FBF9F4;
 
-  --font-display: 'Baloo 2', system-ui, sans-serif;
-  --font-body: 'Quicksand', system-ui, sans-serif;
+  /* Nuevas tipografías */
+  --font-display: 'Luckiest Guy', system-ui, sans-serif;
+  --font-body: 'Poppins', system-ui, sans-serif;
 
   --radius-lg: 28px;
   --radius-md: 18px;
   --wrap: 1140px;
 }
 
+:root {
+  /* ... tus colores ... */
+  --font-display: 'Poppins', system-ui, sans-serif; /* <--- Base general en Poppins */
+  --font-body: 'Poppins', system-ui, sans-serif;
+  /* ... */
+}
+
+/* 1. Título del Hero (Inicio) */
+.hero-copy h1 {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: clamp(2.3rem, 4.2vw, 3.4rem);
+  letter-spacing: 2px;
+  color: var(--cream);
+  max-width: 35ch;
+}
+
+/* 2, 3, 4, 5 y 6. Títulos de las Secciones (Quiénes somos, Servicios, Por qué Aqua, Proyectos, Testimonios) */
+.nosotros h2,
+.servicios h2,
+.por-que h2,
+.proyectos h2,
+.testimonios h2 {
+  font-family: 'Luckiest Guy', cursive;
+  letter-spacing: 2px;
+}
+
 /* ---------- RESET BÁSICO ---------- */
-* { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
@@ -151,7 +180,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  margin-top: 6px;
+  margin-top: 80px;
 }
 .hero-actions .btn-ghost {
   color: var(--cream);
@@ -201,7 +230,6 @@ ul { list-style: none; margin: 0; padding: 0; }
 .wave { position: absolute; bottom: 0; left: 0; width: 100%; line-height: 0; z-index: 2; pointer-events: none; }
 .wave svg { width: 100%; height: 70px; display: block; }
 
-/* Control de colores para las ondas */
 .wave-cream path { fill: var(--cream) !important; }
 .wave-aqua path { fill: var(--aqua) !important; }
 
@@ -213,7 +241,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   display: grid;
   grid-template-columns: 1.3fr .7fr;
   gap: 50px;
-  align-items: start;
+  align-items: center; /* <--- Cambia "start" por "center" para alinearlos verticalmente a la mitad */
 }
 .nosotros h2 { color: #3E5FCE; }
 .nosotros strong { color: #3E5FCE; }
@@ -222,7 +250,8 @@ ul { list-style: none; margin: 0; padding: 0; }
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding-top: 8px;
+  justify-content: center; /* <--- Asegura que el contenedor interno también centre sus elementos */
+  height: 100%; /* <--- Ocupa toda la altura disponible para centrarse exactamente en medio */
 }
 .chip {
   font-family: var(--font-display);
@@ -243,7 +272,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   margin-left: auto;
 }
 
-/* ---------- SERVICIOS ---------- */
+/* ---------- SERVICIOS (CARRUSEL) ---------- */
 .servicios { 
   background: repeating-linear-gradient(
     90deg,
@@ -253,41 +282,127 @@ ul { list-style: none; margin: 0; padding: 0; }
     #a2f4ff90 60px
   ), var(--aqua-pale) !important;
 }
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 34px;
-  margin-top: 46px;
+.servicios h2 { color: var(--blue) !important; }
+
+.services-slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 36px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.services-slider-track-container {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: none !important;
+  box-shadow: 8px 8px 0 var(--blue);
+  background: var(--cream);
+}
+
+.services-slider-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
-.servicios h2 { color: var(--blue) !important; }
-.service-card {
-  background: var(--cream);
+
+.service-slide img {
+  width: 100%;
+  height: auto;
+  max-height: 550px;
+  object-fit: contain;
+  display: block;
+}
+
+/* BOTONES < y > DEL CARRUSEL */
+.slider-btn {
+  background: var(--purple);
+  color: var(--cream);
   border: 3px solid var(--ink);
-  border-radius: var(--radius-md);
-  padding: 30px 26px;
-  box-shadow: 7px 7px 0 var(--aqua);
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  flex-shrink: 0;
+  z-index: 10;
 }
-.service-icon {
-  width: 40px;
-  height: 40px;
-  fill: var(--aqua);
-  margin-bottom: 14px;
+
+.slider-btn:hover {
+  transform: scale(1.1);
+  background: var(--blue);
 }
-.service-card h3 { font-size: 1.25rem; margin-bottom: .3em; }
-.service-card p { font-size: .98rem; color: #3a5a5f; margin: 0; }
-.card-rot-1 { transform: rotate(-1.4deg); }
-.card-rot-2 { transform: rotate(1.1deg); }
-.card-rot-3 { transform: rotate(-.6deg); }
-.card-rot-4 { transform: rotate(1.6deg); }
-.card-rot-5 { transform: rotate(-1deg); }
 
-.service-card:nth-child(1) .service-icon { fill: var(--pink); }
-.service-card:nth-child(2) .service-icon { fill: var(--blue); }
-.service-card:nth-child(3) .service-icon { fill: var(--aqua-deep); }
-.service-card:nth-child(4) .service-icon { fill: var(--purple); }
-.service-card:nth-child(5) .service-icon { fill: var(--pink); }
+.slider-btn:active {
+  transform: scale(0.95);
+}
 
+/* PUNTOS INDICADORES */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.slider-dots .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(14, 107, 120, 0.3);
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.slider-dots .dot.active {
+  background: var(--purple);
+  transform: scale(1.2);
+  border: none;
+  box-shadow: none;
+}
+
+/* Puntos inactivos de color gris y sin bordes */
+.slider-dots .dot,
+.slider-dots span {
+  border: none !important;
+  outline: none !important;
+  background-color: #A0B2B7 !important; /* Un gris elegante que combina con tu paleta */
+  opacity: 0.6;
+}
+
+/* Punto activo sólido y sin bordes */
+.slider-dots .dot.active,
+.slider-dots span.active {
+  border: none !important;
+  outline: none !important;
+  background-color: var(--purple) !important; /* O el color principal que prefieras para el activo */
+  opacity: 1 !important;
+  transform: scale(1.2);
+}
 /* ---------- POR QUÉ AQUA ---------- */
 .por-que-inner { display: block; }
 .por-que h2 { color: var(--blue) !important; }
@@ -433,19 +548,59 @@ ul { list-style: none; margin: 0; padding: 0; }
 .cta-alt { margin-top: 18px; font-size: .95rem; }
 .cta-alt a { text-decoration: underline; }
 
-/* ---------- FOOTER ---------- */
-.site-footer { background: var(--aqua-deep); color: var(--aqua-pale); padding: 40px 0 20px; }
+/* =============================================================
+   FOOTER (ENLACES E INSTAGRAM EN LA MITAD)
+   ============================================================= */
+.site-footer {
+  background: var(--aqua-deep);
+  color: var(--aqua-pale);
+  padding: 40px 0 20px;
+}
+
 .footer-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* 3 columnas: Logo izq, Menú centro, Espacio der */
+  align-items: center; /* Alineados verticalmente a la mitad */
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.footer-logo {
+  height: 80px;
+  border-radius: 8px;
+  justify-self: start; /* Logo a la izquierda */
+}
+
+/* Menú de navegación (incluye Instagram) forzado al CENTRO exacto */
+.footer-nav {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 24px;
+  justify-self: center; /* Ubica todo el bloque de botones justo en la mitad */
+  margin-left: 0;
 }
-.footer-logo { height: 40px; border-radius: 8px; }
-.footer-nav { display: flex; gap: 20px; margin-left: auto; font-weight: 600; }
-.footer-social { display: flex; gap: 18px; font-weight: 600; }
-.footer-copy { text-align: center; font-size: .85rem; opacity: .8; margin: 26px 0 0; }
 
+.footer-nav a {
+  color: var(--aqua-pale);
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.footer-nav a:hover {
+  opacity: 0.8;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+}
+
+.footer-copy {
+  text-align: center;
+  margin-top: 16px;
+  width: 100%;
+  grid-column: 1 / -1; /* El texto de copyright abarca todo el ancho abajo */
+}
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 860px) {
   .hero-inner,
@@ -453,7 +608,6 @@ ul { list-style: none; margin: 0; padding: 0; }
   .hero-art,
   .testimonios-art { order: -1; max-width: 320px; margin: 0 auto; }
   .nosotros-inner { grid-template-columns: 1fr; }
-  .cards-grid { grid-template-columns: 1fr 1fr; }
   .diff-list { grid-template-columns: 1fr; }
   .portfolio-grid { grid-template-columns: 1fr 1fr; }
 }
@@ -472,7 +626,8 @@ ul { list-style: none; margin: 0; padding: 0; }
   .main-nav.is-open { display: flex; }
   .nav-toggle { display: flex; margin-left: auto; }
   .nav-cta { display: none; }
-  .cards-grid { grid-template-columns: 1fr; }
+  .services-slider-container { gap: 8px; }
+  .slider-btn { width: 40px; height: 40px; font-size: 18px; }
   .portfolio-grid { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .footer-nav { margin-left: 0; flex-wrap: wrap; }
@@ -480,27 +635,1041 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 .highlight { color: var(--blue); }
 
-/* Control general de las ondas al fondo */
-.wave { 
-  position: absolute; 
-  bottom: 0; 
-  left: 0; 
-  width: 100%; 
-  line-height: 0; 
-  z-index: 2; 
-  pointer-events: none; 
-}
-.wave svg { 
-  width: 100%; 
-  height: 70px; 
-  display: block; 
+
+/* =============================================================
+   AJUSTES ESPECÍFICOS PARA CARRUSEL DE SERVICIOS (1080x1350)
+   ============================================================= */
+.services-slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 36px;
+  max-width: 440px; /* Formato vertical óptimo */
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Clases de colores para las ondas */
-.wave-cream path { 
-  fill: var(--cream) !important; 
+.services-slider-track-container {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: none !important;
+  box-shadow: 8px 8px 0 var(--blue);
+  background: var(--cream);
+  aspect-ratio: 1080 / 1350; /* Medida exactas de catálogo */
 }
 
-.wave-aqua path { 
-  fill: var(--aqua) !important; 
+.services-slider-track {
+  display: flex;
+  transition: transform 0.25s ease-in-out; /* Transición rápida */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 100%;
+}
+
+.service-slide {
+  min-width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* BOTONES < y > (Sin borde ni contorno pesado) */
+.slider-btn {
+  background: var(--purple);
+  color: var(--cream);
+  border: none !important; /* Quita el borde */
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important; /* Sombra suave */
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.slider-btn:hover {
+  transform: scale(1.1);
+  background: var(--blue);
+}
+
+.slider-btn:active {
+  transform: scale(0.95);
+}
+
+/* PUNTOS INDICADORES */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.slider-dots .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(14, 107, 120, 0.3);
+  border: 2px solid var(--ink);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.slider-dots .dot.active {
+  background: var(--purple);
+  transform: scale(1.2);
+}
+
+@media (max-width: 620px) {
+  .services-slider-container { gap: 6px; }
+  .slider-btn { width: 36px; height: 36px; font-size: 16px; }
+}
+
+/* =============================================================
+   ESTRUCTURA DE DOS COLUMNAS PARA SERVICIOS
+   ============================================================= */
+.servicios-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr; /* Texto a la izquierda, carrusel más grande a la derecha */
+  align-items: center;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.servicios-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.servicios-info .section-intro {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 0;
+}
+
+.servicios-info p {
+  font-size: 1.05rem;
+  color: #3a5a5f;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Carrusel más grande a la derecha */
+.services-slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 520px; /* Tamaño aumentado para que luzca imponente a la derecha */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.services-slider-track-container {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: none !important;
+  box-shadow: 8px 8px 0 var(--blue);
+  background: var(--cream);
+  aspect-ratio: 1080 / 1350; /* Mantiene la proporción exacta de la imagen */
+}
+
+.services-slider-track {
+  display: flex;
+  transition: transform 0.25s ease-in-out;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 100%;
+}
+
+.service-slide {
+  min-width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* BOTONES < y > (Sin contorno y limpios) */
+.slider-btn {
+  background: var(--purple);
+  color: var(--cream);
+  border: none !important;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.slider-btn:hover {
+  transform: scale(1.1);
+  background: var(--blue);
+}
+
+.slider-btn:active {
+  transform: scale(0.95);
+}
+
+/* PUNTOS INDICADORES */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.slider-dots .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(14, 107, 120, 0.3);
+  border: 2px solid var(--ink);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.slider-dots .dot.active {
+  background: var(--purple);
+  transform: scale(1.2);
+}
+
+/* RESPONSIVE: En pantallas medianas y móviles se apila verticalmente */
+@media (max-width: 860px) {
+  .servicios-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .servicios-info {
+    text-align: center;
+  }
+}
+
+@media (max-width: 620px) {
+  .services-slider-container { gap: 6px; }
+  .slider-btn { width: 36px; height: 36px; font-size: 16px; }
+}
+
+/* =============================================================
+   ESTRUCTURA Y TAMAÑOS DE SERVICIOS (MODIFICADO)
+   ============================================================= */
+.servicios-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr; /* Da más espacio a la derecha para el carrusel grande */
+  align-items: center;
+  gap: 50px;
+}
+
+.servicios-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.servicios-info h2 {
+  font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+  color: var(--blue) !important;
+  margin-bottom: 0px; /* Sube el párrafo al reducir el margen del título */
+}
+
+.servicios-info .section-intro {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 4px;
+}
+
+.servicios-info p {
+  font-size: 1.05rem;
+  color: #3a5a5f;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Columna Derecha: Carrusel más grande */
+.servicios-carrusel-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.services-slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 540px; /* Tamaño del recuadro aumentado considerablemente */
+}
+
+.services-slider-track-container {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: none !important;
+  box-shadow: 8px 8px 0 var(--blue);
+  background: var(--cream);
+  aspect-ratio: 1080 / 1350; /* Mantiene la proporción exacta 1080x1350 */
+}
+
+.services-slider-track {
+  display: flex;
+  transition: transform 0.25s ease-in-out;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 100%;
+}
+
+.service-slide {
+  min-width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* BOTONES < y > (Sin contorno) */
+.slider-btn {
+  background: var(--purple);
+  color: var(--cream);
+  border: none !important;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.slider-btn:hover {
+  transform: scale(1.1);
+  background: var(--blue);
+}
+
+.slider-btn:active {
+  transform: scale(0.95);
+}
+
+/* PUNTOS INDICADORES */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.slider-dots .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(14, 107, 120, 0.3);
+  border: 2px solid var(--ink);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.slider-dots .dot.active {
+  background: var(--purple);
+  transform: scale(1.2);
+}
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  .servicios-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .servicios-info {
+    text-align: center;
+  }
+}
+
+@media (max-width: 620px) {
+  .services-slider-container { gap: 6px; max-width: 100%; }
+  .slider-btn { width: 36px; height: 36px; font-size: 16px; }
+}
+
+/* =============================================================
+   GALERÍA COLLAGE CON EFECTO HOVER
+   ============================================================= */
+.portfolio-collage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.portfolio-item {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5; /* Proporción uniforme y estética para las fotos */
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: none !important;
+  box-shadow: 6px 6px 0 var(--blue);
+  background: #000;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 10px 10px 0 var(--purple);
+}
+
+/* Imágenes y videos de fondo */
+.portfolio-item img,
+.portfolio-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover img,
+.portfolio-item:hover video {
+  transform: scale(1.08); /* Sutil efecto de zoom al pasar el mouse */
+}
+
+/* Capa azul de opacidad (Overlay) */
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(14, 107, 120, 0.88); /* Azul marca con opacidad */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  opacity: 0; /* Oculto por defecto */
+  transition: opacity 0.3s ease;
+  text-align: center;
+}
+
+/* Mostrar la capa al pasar el ratón */
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+/* Textos blancos dentro del overlay */
+.portfolio-text h3 {
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin: 0 0 8px 0;
+  line-height: 1.25;
+}
+
+.portfolio-text p {
+  color: #eafbfc;
+  font-size: 0.95rem;
+  margin: 0 0 16px 0;
+}
+
+.click-hint {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--yellow);
+  border: 2px solid var(--yellow);
+  padding: 6px 14px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsivo para tablets y celulares */
+@media (max-width: 860px) {
+  .portfolio-collage {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .portfolio-collage {
+    grid-template-columns: 1fr;
+  }
+}
+/* =============================================================
+   GALERÍA COLLAGE DE PROYECTOS (6 ITEMS)
+   ============================================================= */
+.proyectos h2 {
+  font-size: clamp(2.4rem, 4.2vw, 3.4rem); /* Título grande a juego con Servicios */
+  color: var(--blue) !important;
+  margin-bottom: 24px;
+}
+
+.portfolio-collage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.portfolio-item {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5; /* Formato vertical proporcionado y compacto */
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--blue);
+  background: #000;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 10px 10px 0 var(--purple);
+}
+
+/* Imágenes y videos de fondo */
+.portfolio-item img,
+.portfolio-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover img,
+.portfolio-item:hover video {
+  transform: scale(1.08);
+}
+
+/* Capa azul de opacidad */
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(14, 107, 120, 0.88); /* Azul profundo de la marca */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+/* Textos blancos y detalles */
+.portfolio-text h3 {
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+}
+
+.portfolio-text p {
+  color: #eafbfc;
+  font-size: 0.9rem;
+  margin: 0 0 14px 0;
+}
+
+/* Botón flotante con fondo en azul oscuro acorde al título */
+.click-hint {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--blue); /* Azul oscuro de los títulos */
+  border: 2px solid #ffffff;
+  padding: 5px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background-color 0.15s ease;
+}
+
+.click-hint:hover {
+  background: var(--ink);
+}
+
+/* Responsivo */
+@media (max-width: 860px) {
+  .portfolio-collage {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .portfolio-collage {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================================
+   GALERÍA COLLAGE DE PROYECTOS (6 ITEMS)
+   ============================================================= */
+.proyectos h2 {
+  font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+  color: var(--blue) !important;
+  margin-bottom: 24px;
+}
+
+.portfolio-collage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.portfolio-item {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5; /* Formato vertical estándar para la mayoría */
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--blue);
+  background: var(--cream); /* Fondo crema para las horizontales si sobra espacio */
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* MODIFICACIÓN ESPECIAL PARA KIMI FRIENDS Y DUO PEREIRA (Horizontales) */
+.portfolio-item.horizontal {
+  aspect-ratio: 16 / 10; /* Formato horizontal elegante */
+}
+
+.portfolio-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 10px 10px 0 var(--purple);
+}
+
+/* Imágenes y videos de fondo */
+.portfolio-item img,
+.portfolio-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* Para que las horizontales muestren la imagen completa sin recortarse */
+.portfolio-item.horizontal img {
+  object-fit: contain; 
+  padding: 10px; /* Margen interno opcional para que resalten más */
+}
+
+.portfolio-item:hover img,
+.portfolio-item:hover video {
+  transform: scale(1.08);
+}
+
+/* Capa azul de opacidad */
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(14, 107, 120, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+/* Textos blancos y detalles */
+.portfolio-text h3 {
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+}
+
+.portfolio-text p {
+  color: #eafbfc;
+  font-size: 0.9rem;
+  margin: 0 0 14px 0;
+}
+
+/* Botón flotante */
+.click-hint {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--blue);
+  border: 2px solid #ffffff;
+  padding: 5px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background-color 0.15s ease;
+}
+
+.click-hint:hover {
+  background: var(--ink);
+}
+
+/* Responsivo */
+@media (max-width: 860px) {
+  .portfolio-collage {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .portfolio-collage {
+    grid-template-columns: 1fr;
+  }
+}
+/* =============================================================
+   GALERÍA COLLAGE (3 ARRIBA Y 3 ABAJO CON MÓDULO HORIZONTAL DOBLE)
+   ============================================================= */
+.proyectos h2 {
+  font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+  color: var(--blue) !important;
+  margin-bottom: 24px;
+}
+
+.portfolio-collage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.portfolio-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5; /* Formato vertical estándar */
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--blue);
+  background: var(--cream);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Columna especial que agrupa las 2 imágenes horizontales */
+.portfolio-dual-horizontal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  height: 100%;
+}
+
+.portfolio-dual-horizontal .portfolio-item.horizontal {
+  aspect-ratio: 16 / 10; /* Tamaño compacto horizontal original */
+  height: auto;
+  flex: 1;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 10px 10px 0 var(--purple);
+}
+
+/* Imágenes y videos de fondo */
+.portfolio-item img,
+.portfolio-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover img,
+.portfolio-item:hover video {
+  transform: scale(1.08);
+}
+
+/* Capa azul de opacidad (Hover) */
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(14, 107, 120, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+/* Textos */
+.portfolio-text h3 {
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+}
+
+.portfolio-text p {
+  color: #eafbfc;
+  font-size: 0.85rem;
+  margin: 0 0 10px 0;
+}
+
+/* Botón flotante */
+.click-hint {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--blue);
+  border: 2px solid #ffffff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 860px) {
+  .portfolio-collage {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .portfolio-collage {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================================
+   SECCIÓN TESTIMONIOS (OPCIÓN 2: GRID ÁUREO 3 + 2 + 4)
+   ============================================================= */
+.testimonios h2 {
+  font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+  color: var(--blue) !important;
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: #3a5a5f;
+  margin-bottom: 36px;
+}
+
+/* Fila 1: 3 Columnas Amplias */
+.testimonios-row-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+/* Fila 2: 2 Columnas Centradas con el Mismo Ancho */
+.testimonios-row-2 {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 48px;
+}
+
+.testimonios-row-2 .testimonio-card {
+  width: calc(33.333% - 19px); /* Mantiene la misma escala que los de la fila de 3 */
+}
+
+/* Fila 3: 4 Columnas para las Historias */
+.testimonios-grid-story {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.testimonio-card {
+  background: transparent;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+/* Inclinaciones para dinamicidad */
+.tilt-left { transform: rotate(-2deg); }
+.tilt-right { transform: rotate(1.8deg); }
+.tilt-left-sm { transform: rotate(-1.2deg) translateY(6px); }
+.tilt-right-sm { transform: rotate(2deg) translateY(-4px); }
+
+.testimonio-card:hover {
+  transform: rotate(0deg) scale(1.04) translateY(-6px);
+  z-index: 5;
+}
+
+/* Contenedor de las imágenes con dimensiones exactas */
+.testimonio-img-wrapper {
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 6px 6px 0 var(--blue);
+  background: transparent;
+  transition: box-shadow 0.3s ease;
+}
+
+.testimonio-img-wrapper.format-standard {
+  aspect-ratio: 1080 / 1350;
+}
+
+.testimonio-img-wrapper.format-story {
+  aspect-ratio: 1080 / 1920;
+}
+
+.testimonio-card:hover .testimonio-img-wrapper {
+  box-shadow: 8px 8px 0 var(--purple);
+}
+
+.testimonio-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-md);
+}
+
+/* Etiqueta de la marca */
+.testimonio-footer {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.testimonio-brand {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--blue);
+  padding: 5px 14px;
+  border-radius: 999px;
+  display: inline-block;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+/* Adaptación responsive */
+@media (max-width: 860px) {
+  .testimonios-row-3,
+  .testimonios-grid-story {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .testimonios-row-2 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .testimonios-row-2 .testimonio-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 580px) {
+  .testimonios-row-3,
+  .testimonios-grid-story {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonio-card {
+    transform: none !important;
+  }
 }
