@@ -2763,3 +2763,624 @@ ul { list-style: none; margin: 0; padding: 0; }
     box-shadow: 2px 2px 0 var(--blue) !important;
   }
 }
+/* =============================================================
+   PAQUETES (debajo de Servicios)
+   ============================================================= */
+.paquetes {
+  background: var(--cream);
+}
+.paquetes h2 {
+  font-family: 'Luckiest Guy', cursive;
+  letter-spacing: 2px;
+  font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+.paquetes-head { max-width: 60ch; margin-bottom: 44px; }
+.paquetes-head .section-intro { color: #3a5a5f; margin: 0; }
+
+.paquetes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 26px;
+  align-items: stretch;
+}
+
+.paquete {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 30px 24px 26px;
+  box-shadow: 7px 7px 0 var(--blue);
+  -webkit-transition: -webkit-transform .2s ease, box-shadow .2s ease;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.paquete:nth-child(3) { box-shadow: 7px 7px 0 var(--purple); }
+.paquete:nth-child(4) { box-shadow: 7px 7px 0 var(--pink); }
+
+.paquete-tag {
+  -webkit-align-self: flex-start;
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color: var(--aqua-deep);
+  background: var(--aqua-pale);
+  border-radius: 999px;
+  padding: 4px 12px;
+  margin-bottom: 14px;
+}
+
+.paquete-nombre {
+  font-family: 'Luckiest Guy', cursive;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  font-size: 1.7rem;
+  color: var(--blue);
+  margin: 0 0 8px;
+}
+.paquete-desc {
+  font-size: .92rem;
+  line-height: 1.5;
+  color: #3a5a5f;
+  margin: 0 0 18px;
+}
+
+.paquete-precio {
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1.1;
+  color: var(--ink);
+  padding: 14px 0;
+  margin: 0 0 18px;
+  border-top: 2px dashed rgba(18, 50, 56, .15);
+  border-bottom: 2px dashed rgba(18, 50, 56, .15);
+}
+.paquete-precio small {
+  display: inline-block;
+  font-size: .78rem;
+  font-weight: 500;
+  color: #5c7a7f;
+}
+.paquete-precio small:first-child { display: block; margin-bottom: 2px; }
+
+.paquete-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 0 24px;
+  -webkit-box-flex: 1;
+  flex: 1 1 auto;
+}
+.paquete-lista li {
+  position: relative;
+  padding-left: 26px;
+  font-size: .92rem;
+  line-height: 1.4;
+}
+/* Estrellita amarilla como viñeta (sin imágenes) */
+.paquete-lista li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 17px;
+  height: 17px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23FFD65C' d='M50 10 L58 40 L90 42 L64 60 L74 90 L50 71 L26 90 L36 60 L10 42 L42 40 Z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.paquete-btn {
+  display: block;
+  text-align: center;
+  background: var(--purple);
+  color: var(--cream);
+  font-size: 15px;
+  padding: 12px 20px;
+  box-shadow: 4px 4px 0 var(--blue);
+}
+
+/* Paquete destacado */
+.paquete--destacado {
+  background: var(--aqua);
+  color: #ffffff;
+  box-shadow: 7px 7px 0 var(--aqua-deep);
+  -webkit-transform: translateY(-14px);
+  transform: translateY(-14px);
+}
+.paquete--destacado .paquete-tag { background: rgba(255,255,255,.25); color: #ffffff; }
+.paquete--destacado .paquete-nombre { color: #ffffff; }
+.paquete--destacado .paquete-desc,
+.paquete--destacado .paquete-precio small { color: var(--aqua-pale); }
+.paquete--destacado .paquete-precio {
+  color: #ffffff;
+  border-color: rgba(255,255,255,.35);
+}
+.paquete--destacado .paquete-btn {
+  background: var(--cream);
+  color: var(--aqua-deep);
+  box-shadow: 4px 4px 0 var(--aqua-deep);
+}
+.paquete-badge {
+  position: absolute;
+  top: -14px;
+  right: 20px;
+  background: var(--yellow);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  -webkit-transform: rotate(4deg);
+  transform: rotate(4deg);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+@media (hover: hover) {
+  .paquete:hover { -webkit-transform: translateY(-6px); transform: translateY(-6px); }
+  .paquete--destacado:hover { -webkit-transform: translateY(-20px); transform: translateY(-20px); }
+}
+
+.paquetes-nota {
+  text-align: center;
+  margin: 46px auto 0;
+  font-size: 1rem;
+  color: #3a5a5f;
+}
+.paquetes-nota a {
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Tablet: 2 x 2 */
+@media (max-width: 1060px) {
+  .paquetes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px 26px; }
+  .paquete--destacado { -webkit-transform: none; transform: none; }
+  @media (hover: hover) { .paquete--destacado:hover { -webkit-transform: translateY(-6px); transform: translateY(-6px); } }
+}
+
+/* Celular: una columna, tarjetas compactas */
+@media (max-width: 620px) {
+  .paquetes-head { margin-bottom: 30px; }
+  .paquetes-grid { grid-template-columns: 1fr; gap: 30px; }
+  .paquete { padding: 24px 20px 22px; border-radius: 22px; box-shadow: 5px 5px 0 var(--blue); }
+  .paquete:nth-child(3) { box-shadow: 5px 5px 0 var(--purple); }
+  .paquete:nth-child(4) { box-shadow: 5px 5px 0 var(--pink); }
+  .paquete--destacado { box-shadow: 5px 5px 0 var(--aqua-deep); }
+  .paquete-nombre { font-size: 1.5rem !important; }
+  .paquete-desc, .paquete-lista li { font-size: 13px; }
+  .paquete-precio { font-size: 1.35rem; }
+  .paquete-btn { font-size: 14px; padding: 10px 18px; }
+  .paquetes-nota { font-size: 13px; margin-top: 32px; }
+}
+
+/* =============================================================
+   COMPATIBILIDAD SAFARI / iPHONE / iPAD (dejar AL FINAL DE TODO)
+   Chrome ya se veía bien; estas reglas hacen que Safari se vea igual.
+   ============================================================= */
+
+/* iPhone no agranda el texto solo al girar el celular */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Sin scroll horizontal (Safari ignora overflow-x:hidden en algunas versiones) */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+@supports (overflow: clip) {
+  html, body { overflow-x: clip; }
+}
+main { display: block; width: 100%; overflow: hidden; }
+
+/* Menú fijo arriba también en Safari antiguos */
+.site-header {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+/* Quita el estilo de botón de Apple (bordes, padding y color azul) */
+button,
+.slider-btn,
+.nav-toggle {
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0;
+  line-height: 1;
+  color: inherit;
+  font: inherit;
+}
+.slider-btn {
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+}
+.nav-toggle { padding: 6px; }
+
+/* Sin el recuadro gris al tocar enlaces en iPhone */
+a, button { -webkit-tap-highlight-color: transparent; }
+
+/* Safari no recortaba bien las esquinas redondeadas con imágenes/videos dentro */
+.services-slider-track-container,
+.portfolio-item,
+.testimonio-img-wrapper,
+.hero-img {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  isolation: isolate;
+}
+
+/* Carrusel: transiciones con prefijo para Safari */
+.services-slider-track {
+  -webkit-transition: -webkit-transform .25s ease-in-out;
+  transition: transform .25s ease-in-out;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  touch-action: pan-y;
+}
+
+/* Videos: siempre llenan su tarjeta */
+.portfolio-item video { background: var(--cream); }
+
+/* En iPhone/iPad el primer toque activaba el efecto hover y había que tocar dos veces.
+   En pantallas táctiles el enlace abre con un solo toque. */
+@media (hover: none) {
+  .portfolio-item:hover .portfolio-overlay { opacity: 0; }
+  .portfolio-item:hover,
+  .portfolio-item:hover img,
+  .portfolio-item:hover video,
+  .testimonio-card:hover,
+  .slider-btn:hover,
+  .btn:hover { -webkit-transform: none; transform: none; }
+}
+
+/* Safari muy viejos (iOS 14 o menos) no entienden aspect-ratio:
+   se les da una altura fija para que nada desaparezca */
+@supports not (aspect-ratio: 1 / 1) {
+  .services-slider-track-container { height: 0; padding-bottom: 125%; position: relative; }
+  .services-slider-track { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  .portfolio-item { height: 360px; }
+  .portfolio-dual-horizontal .portfolio-item.horizontal { height: 172px; }
+  .testimonio-img-wrapper.format-standard { height: 360px; }
+  .testimonio-img-wrapper.format-story { height: 420px; }
+  @media (max-width: 768px) {
+    #proyectos .portfolio-item { height: 220px !important; }
+    #proyectos .portfolio-item.horizontal { height: 103px !important; }
+    #testimonios .testimonio-img-wrapper.format-standard { height: 200px !important; }
+    #testimonios .testimonio-img-wrapper.format-story { height: 290px !important; }
+  }
+}
+
+/* Safari sin "gap" en flexbox (iOS 14.0): margen de respaldo en botones del hero */
+@supports not (inset: 0) {
+  .hero-actions .btn { margin: 0 12px 12px 0; }
+}
+
+/* Ancho seguro con la muesca del iPhone en horizontal */
+@supports (padding: max(0px)) {
+  .wrap {
+    padding-left: max(28px, env(safe-area-inset-left));
+    padding-right: max(28px, env(safe-area-inset-right));
+  }
+}
+
+/* Menú en tablet: cabe el nuevo enlace "Paquetes" */
+@media (min-width: 621px) and (max-width: 1060px) {
+  .header-inner { gap: 14px; }
+  .main-nav { gap: 14px; font-size: 14px; }
+  .nav-cta { padding: 8px 16px; font-size: 14px; }
+  .brand-logo { height: 44px; }
+}
+
+/* Precio "por separado" tachado en los paquetes */
+.paquete-antes {
+  font-size: .82rem;
+  color: #5c7a7f;
+  margin: -8px 0 18px;
+}
+.paquete-antes s { text-decoration-thickness: 1.5px; }
+.paquete--destacado .paquete-antes { color: var(--aqua-pale); }
+.paquete .paquete-precio { margin-bottom: 14px; }
+@media (max-width: 620px) { .paquete-antes { font-size: 12px; } }
+
+/* Aviso dentro de una tarjeta de paquete */
+.paquete-aviso {
+  font-size: .8rem;
+  line-height: 1.4;
+  color: var(--aqua-deep);
+  background: var(--aqua-pale);
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin: -10px 0 20px;
+}
+@media (max-width: 620px) { .paquete-aviso { font-size: 12px; } }
+
+/* Ahorro del paquete frente a los servicios sueltos */
+.paquete-antes { line-height: 1.45; }
+.paquete-ahorro {
+  display: block;
+  width: -webkit-fit-content;
+  width: fit-content;
+  margin-top: 6px;
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--yellow);
+  border-radius: 999px;
+  padding: 3px 12px;
+}
+
+/* =============================================================
+   PAQUETE A LA MEDIDA (recuadro al final de Paquetes)
+   ============================================================= */
+.section.paquetes { padding-bottom: 80px; }
+
+.paquetes-medida {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 30px;
+  margin-top: 64px;
+  padding: 44px 56px;
+  border-radius: var(--radius-lg);
+  color: var(--cream);
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 30px,
+    rgba(255, 255, 255, 0.08) 30px,
+    rgba(255, 255, 255, 0.08) 60px
+  ), var(--blue);
+  box-shadow: 8px 8px 0 var(--purple);
+  overflow: hidden;
+}
+
+.medida-copy { position: relative; z-index: 1; max-width: 560px; }
+
+.medida-kicker {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: var(--ink);
+  background: var(--yellow);
+  border-radius: 999px;
+  padding: 4px 14px;
+  margin-bottom: 14px;
+  -webkit-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+}
+
+.paquetes-medida h3 {
+  font-family: 'Luckiest Guy', cursive;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  line-height: 1.1;
+  color: var(--cream);
+  margin: 0 0 10px;
+}
+
+.paquetes-medida p {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #e6ebff;
+  margin: 0 0 18px;
+}
+
+.medida-notas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.medida-notas li {
+  position: relative;
+  font-size: .85rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.16);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 5px 14px 5px 32px;
+}
+.medida-notas li::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23FFD65C' d='M50 10 L58 40 L90 42 L64 60 L74 90 L50 71 L26 90 L36 60 L10 42 L42 40 Z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.medida-btn {
+  position: relative;
+  z-index: 1;
+  background: var(--yellow);
+  color: var(--ink);
+  font-size: 17px;
+  padding: 16px 32px;
+  white-space: nowrap;
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+/* Decoraciones */
+.medida-deco { position: absolute; pointer-events: none; }
+.medida-star--1 { width: 54px; height: 54px; top: 18px; right: 38%; fill: var(--yellow); color: var(--yellow); -webkit-transform: rotate(12deg); transform: rotate(12deg); }
+.medida-star--2 { width: 30px; height: 30px; bottom: 22px; right: 26px; fill: var(--pink); color: var(--pink); }
+.medida-squiggle { width: 90px; height: 68px; top: -10px; right: 40px; color: var(--purple); opacity: .9; }
+
+/* Tablet */
+@media (max-width: 860px) {
+  .paquetes-medida { grid-template-columns: 1fr; padding: 38px 34px; gap: 24px; }
+  .medida-btn { justify-self: start; }
+  .medida-star--1 { right: 18px; top: auto; bottom: 30px; }
+}
+
+/* Celular */
+@media (max-width: 620px) {
+  .paquetes-medida { margin-top: 44px; padding: 30px 22px 28px; border-radius: 22px; box-shadow: 5px 5px 0 var(--purple); }
+  .paquetes-medida h3 { font-size: 1.45rem !important; padding-right: 40px; }
+  .paquetes-medida p { font-size: 13px; }
+  .medida-notas li { font-size: 12px; }
+  .medida-btn { font-size: 14px; padding: 12px 24px; box-shadow: 3px 3px 0 var(--ink); }
+  .medida-squiggle { width: 60px; height: 45px; right: 14px; }
+  .medida-star--1 { width: 36px; height: 36px; }
+}
+
+@media (max-width: 620px) {
+  .medida-star--1 { right: 70px; bottom: 34px; }
+  .medida-star--2 { right: 22px; bottom: 56px; }
+}
+
+/* Paquete a la medida: versión morada, sin tanto amarillo */
+.paquetes-medida {
+  grid-template-columns: minmax(0, 600px) auto;
+  justify-content: start;
+  column-gap: 72px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 30px,
+    rgba(255, 255, 255, 0.12) 30px,
+    rgba(255, 255, 255, 0.12) 60px
+  ), var(--purple);
+  box-shadow: 8px 8px 0 var(--blue);
+}
+.paquetes-medida h3,
+.paquetes-medida p { color: #ffffff; }
+.medida-kicker {
+  background: var(--cream);
+  color: var(--blue);
+}
+.medida-notas li {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+}
+.medida-notas li::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23FBF9F4' d='M50 10 L58 40 L90 42 L64 60 L74 90 L50 71 L26 90 L36 60 L10 42 L42 40 Z'/%3E%3C/svg%3E");
+}
+.medida-btn {
+  background: var(--cream);
+  color: var(--blue);
+  box-shadow: 5px 5px 0 var(--blue);
+}
+.medida-star--1 { fill: var(--cream); color: var(--cream); }
+.medida-star--2 { fill: var(--pink); color: var(--pink); }
+.medida-squiggle { color: var(--blue); }
+
+@media (max-width: 860px) {
+  .paquetes-medida { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .paquetes-medida { box-shadow: 5px 5px 0 var(--blue); }
+  .medida-btn { box-shadow: 3px 3px 0 var(--blue); }
+}
+
+/* Paquete a la medida: menos blanco (solo cambia este recuadro) */
+.medida-kicker { background: var(--blue); color: #ffffff; }
+.medida-notas li {
+  background: rgba(62, 95, 206, 0.35);
+  border-color: transparent;
+}
+.medida-notas li::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23F2A6C8' d='M50 10 L58 40 L90 42 L64 60 L74 90 L50 71 L26 90 L36 60 L10 42 L42 40 Z'/%3E%3C/svg%3E");
+}
+.medida-btn {
+  background: var(--blue);
+  color: #ffffff;
+  box-shadow: 5px 5px 0 var(--aqua-deep);
+}
+.medida-star--1 { fill: var(--pink); color: var(--pink); }
+.medida-star--2 { fill: var(--blue); color: var(--blue); }
+.paquetes-medida {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 30px,
+    rgba(62, 95, 206, 0.08) 30px,
+    rgba(62, 95, 206, 0.08) 60px
+  ), var(--purple);
+}
+@media (max-width: 620px) {
+  .medida-btn { box-shadow: 3px 3px 0 var(--aqua-deep); }
+}
+
+/* Tarjetas de paquetes: cada una con un pastel de la paleta (Marea sigue turquesa) */
+.paquete:nth-child(1) { background: #E6ECFF; }
+.paquete:nth-child(3) { background: #F2E8FD; }
+.paquete:nth-child(4) { background: #FDEAF3; }
+.paquete:not(.paquete--destacado) .paquete-tag { background: #ffffff; }
+.paquete:not(.paquete--destacado) .paquete-aviso { background: rgba(255, 255, 255, 0.7); }
+
+/* Botón de WhatsApp del paquete a la medida */
+.medida-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.medida-wa { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
+@media (max-width: 620px) { .medida-wa { width: 18px; height: 18px; } }
+
+/* Más espacio para el texto con el botón largo */
+.paquetes-medida { grid-template-columns: minmax(0, 660px) auto; column-gap: 48px; }
+@media (max-width: 1060px) { .paquetes-medida { grid-template-columns: 1fr; } .medida-btn { justify-self: start; } }
+
+/* =============================================================
+   PAQUETES: fondo lila con rayas + tarjetas blancas (Marea turquesa)
+   ============================================================= */
+.section.paquetes {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 30px,
+    rgba(255, 255, 255, 0.55) 30px,
+    rgba(255, 255, 255, 0.55) 60px
+  ), #EFE6FB;
+  padding-bottom: 150px;
+}
+
+/* La onda al final de Servicios toma el color lila para unir las dos secciones */
+.servicios > .wave path { fill: #EFE6FB !important; }
+
+/* Onda crema al final de Paquetes, para pasar a "¿Por qué Aqua?" */
+.paquetes::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath fill='%23FBF9F4' d='M0,40 C 240,90 480,0 720,30 C 960,60 1200,10 1440,40 L1440,90 L0,90 Z'/%3E%3C/svg%3E") no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+
+/* Tarjetas de nuevo en blanco */
+.paquete:nth-child(1),
+.paquete:nth-child(3),
+.paquete:nth-child(4) { background: #ffffff; }
+.paquete:not(.paquete--destacado) .paquete-tag { background: var(--aqua-pale); }
+.paquete:not(.paquete--destacado) .paquete-aviso { background: var(--aqua-pale); }
+
+@media (max-width: 768px) {
+  .section.paquetes { padding-bottom: 100px !important; }
+  .paquetes::after { height: 40px; }
+}
+
+/* Paquetes: fondo lila liso (sin rayas) */
+.section.paquetes { background: #EFE6FB; }
+
+/* Botón del paquete a la medida: sombra azul oscuro en vez de verde */
+.medida-btn { box-shadow: 5px 5px 0 #2C3F8F; }
+@media (max-width: 620px) { .medida-btn { box-shadow: 3px 3px 0 #2C3F8F; } }

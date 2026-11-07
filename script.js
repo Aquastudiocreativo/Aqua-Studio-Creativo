@@ -21,6 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- VIDEOS: asegurar que arranquen en iPhone (Safari a veces no respeta autoplay) ---
+  document.querySelectorAll('video[autoplay]').forEach((v) => {
+    v.muted = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    const p = v.play();
+    if (p && typeof p.catch === 'function') { p.catch(() => {}); }
+  });
+
   // --- CARRUSEL DE SERVICIOS ---
   const track = document.getElementById('services-track');
   const prevBtn = document.getElementById('prev-service');
@@ -42,8 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
         currentIndex = index;
       }
 
-      // Aplica la transformación directamente al riel de imágenes
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      // Aplica la transformación directamente al riel de imágenes (con prefijo para Safari)
+      const move = 'translateX(-' + (currentIndex * 100) + '%)';
+      track.style.webkitTransform = move;
+      track.style.transform = move;
 
       // Actualizar puntos
       dots.forEach((dot, i) => {
@@ -98,6 +109,31 @@ document.addEventListener('DOMContentLoaded', () => {
       container.addEventListener('mouseenter', stopAutoplay);
       container.addEventListener('mouseleave', startAutoplay);
     }
+
+    // Deslizar con el dedo en celular y tablet (iPhone y Android)
+    const trackBox = document.querySelector('.services-slider-track-container');
+    if (trackBox) {
+      let startX = 0;
+      let startY = 0;
+      trackBox.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        stopAutoplay();
+      }, { passive: true });
+      trackBox.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - startX;
+        const dy = e.changedTouches[0].clientY - startY;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+          moveToSlide(dx < 0 ? currentIndex + 1 : currentIndex - 1);
+        }
+        startAutoplay();
+      }, { passive: true });
+    }
+
+    // Pausar cuando la pestaña no está visible (ahorra batería en iPhone)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { stopAutoplay(); } else { startAutoplay(); }
+    });
 
     // Iniciar auto-play
     startAutoplay();
